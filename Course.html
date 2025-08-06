@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn AI with Hassan - Complete Roadmap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            display: none;
+            padding: 40px;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #87CEEB;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 900px;
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .slide li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 15px 25px;
+            margin: 0 5px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-slide {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .section-slide {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+        }
+
+        .topic-slide {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+        }
+
+        .career-slide {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .contact-slide {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+        }
+
+        .contact-slide h1, .contact-slide h2 {
+            color: #333;
+        }
+
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.3s ease;
+            z-index: 1001;
+        }
+
+        .help-text {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .bookmark-btn {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .student-notes {
+            position: fixed;
+            bottom: 80px;
+            left: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            display: none;
+        }
+
+        .student-notes.active {
+            display: block;
+        }
+
+        .student-notes textarea {
+            width: 100%;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        .student-notes textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        @media (max-width: 768px) {
+            .slide h1 { font-size: 2.5rem; }
+            .slide h2 { font-size: 2rem; }
+            .slide h3 { font-size: 1.5rem; }
+            .slide p, .slide li { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active logo-slide">
+            <div class="emoji">🚀</div>
+            <h1>Learn AI with Hassan</h1>
+            <h2>Complete AI Learning Roadmap</h2>
+            <p>From Beginner to Industry Ready</p>
+            <div class="highlight">
+                <p><strong>Transform Your Career with AI</strong></p>
+                <p>90+ students already learning • Industry connections • Internship support</p>
+                <p><em>👆 Use arrow keys, spacebar, or buttons to navigate</em></p>
+            </div>
+        </div>
+
+        <!-- Slide 2: About Hassan -->
+        <div class="slide">
+            <div class="emoji">👨‍💻</div>
+            <h2>About Your Instructor</h2>
+            <div class="highlight">
+                <h3>Hassan - Your AI Learning Guide</h3>
+                <p>Passionate about making AI accessible to everyone</p>
+                <p>Dedicated to transforming beginners into industry-ready AI professionals</p>
+            </div>
+            <p><em>"Learning AI doesn't have to be complicated. Let's build your AI career together, one project at a time."</em></p>
+        </div>
+
+        <!-- Slide 3: Program Overview -->
+        <div class="slide">
+            <h2>How This Program Works</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>⏰ Flexible Timeline</h3>
+                    <p>Learn at your own pace, no fixed weeks</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Simple Approach</h3>
+                    <p>Easy language, practical examples</p>
+                </div>
+                <div class="card">
+                    <h3>📚 Learning Method</h3>
+                    <p>Documents + Videos when possible</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 End Goal</h3>
+                    <p>Industry-ready skills + internships</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Section 1 Foundation -->
+        <div class="slide section-slide">
+            <div class="emoji">🏗️</div>
+            <h2>SECTION 1: FOUNDATION</h2>
+            <h3>Getting Started (4 Topics)</h3>
+            <ul>
+                <li><strong>Topic 1:</strong> Introduction to AI World</li>
+                <li><strong>Topic 2:</strong> Python for AI (Just What We Need)</li>
+                <li><strong>Topic 3:</strong> Statistics Made Simple</li>
+                <li><strong>Topic 4:</strong> Math Essentials for AI</li>
+            </ul>
+            <div class="highlight">
+                <p><strong>You'll Build:</strong> 2-3 basic data analysis projects</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Section 2 ML -->
+        <div class="slide section-slide">
+            <div class="emoji">🤖</div>
+            <h2>SECTION 2: MACHINE LEARNING</h2>
+            <h3>The Core (6 Topics)</h3>
+            <ul>
+                <li><strong>Topic 5:</strong> Introduction to Machine Learning</li>
+                <li><strong>Topic 6:</strong> Predicting Numbers (Regression)</li>
+                <li><strong>Topic 7:</strong> Classification - Yes or No Decisions</li>
+                <li><strong>Topic 8:</strong> Making Models Better</li>
+                <li><strong>Topic 9:</strong> Finding Hidden Patterns</li>
+                <li><strong>Topic 10:</strong> Advanced ML Techniques</li>
+            </ul>
+            <div class="highlight">
+                <p><strong>You'll Build:</strong> 4-5 ML projects across different problem types</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Section 3 Deep Learning -->
+        <div class="slide section-slide">
+            <div class="emoji">🧠</div>
+            <h2>SECTION 3: DEEP LEARNING</h2>
+            <h3>The AI Revolution (4 Topics)</h3>
+            <ul>
+                <li><strong>Topic 11:</strong> Neural Networks Basics</li>
+                <li><strong>Topic 12:</strong> Deep Neural Networks</li>
+                <li><strong>Topic 13:</strong> Computer Vision Part 1 - CNNs</li>
+                <li><strong>Topic 14:</strong> Sequence Learning - RNNs</li>
+            </ul>
+            <div class="highlight">
+                <p><strong>You'll Build:</strong> 3-4 deep learning applications</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Section 4 NLP -->
+        <div class="slide section-slide">
+            <div class="emoji">💬</div>
+            <h2>SECTION 4: NLP</h2>
+            <h3>Natural Language Processing (3 Topics)</h3>
+            <ul>
+                <li><strong>Topic 15:</strong> Text Processing Basics</li>
+                <li><strong>Topic 16:</strong> Advanced NLP with Deep Learning</li>
+                <li><strong>Topic 17:</strong> Modern NLP - Transformers and LLMs</li>
+            </ul>
+            <div class="highlight">
+                <p><strong>You'll Build:</strong> Chatbots, sentiment analysis, Q&A systems</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Section 5 Computer Vision -->
+        <div class="slide section-slide">
+            <div class="emoji">👁️</div>
+            <h2>SECTION 5: COMPUTER VISION</h2>
+            <h3>Teaching Computers to See (3 Topics)</h3>
+            <ul>
+                <li><strong>Topic 18:</strong> Image Processing Fundamentals</li>
+                <li><strong>Topic 19:</strong> Advanced Computer Vision</li>
+                <li><strong>Topic 20:</strong> Computer Vision Applications</li>
+            </ul>
+            <div class="highlight">
+                <p><strong>You'll Build:</strong> Object detection, face recognition, OCR systems</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Section 6 GenAI -->
+        <div class="slide section-slide">
+            <div class="emoji">✨</div>
+            <h2>SECTION 6: GENERATIVE AI</h2>
+            <h3>Modern AI Applications (3 Topics)</h3>
+            <ul>
+                <li><strong>Topic 21:</strong> Large Language Models (LLMs)</li>
+                <li><strong>Topic 22:</strong> Advanced GenAI Applications</li>
+                <li><strong>Topic 23:</strong> Industry Deployment & MLOps</li>
+            </ul>
+            <div class="highlight">
+                <p><strong>You'll Build:</strong> AI applications using ChatGPT API, RAG systems</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Career Development -->
+        <div class="slide career-slide">
+            <div class="emoji">💼</div>
+            <h2>CAREER DEVELOPMENT</h2>
+            <h3>Throughout Your Learning Journey</h3>
+            <div class="grid">
+                <div class="card">
+                    <h3>LinkedIn Profile</h3>
+                    <p>Professional branding and networking</p>
+                </div>
+                <div class="card">
+                    <h3>Resume Building</h3>
+                    <p>Technical resume with projects</p>
+                </div>
+                <div class="card">
+                    <h3>Portfolio Creation</h3>
+                    <p>15-20 impressive projects</p>
+                </div>
+                <div class="card">
+                    <h3>Interview Prep</h3>
+                    <p>Technical and behavioral interviews</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Project Portfolio -->
+        <div class="slide topic-slide">
+            <div class="emoji">📊</div>
+            <h2>Your Complete Portfolio</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Foundation Projects</h3>
+                    <p>2-3 data analysis projects</p>
+                </div>
+                <div class="card">
+                    <h3>ML Projects</h3>
+                    <p>4-5 machine learning applications</p>
+                </div>
+                <div class="card">
+                    <h3>Deep Learning</h3>
+                    <p>3-4 neural network projects</p>
+                </div>
+                <div class="card">
+                    <h3>NLP Applications</h3>
+                    <p>2-3 text processing projects</p>
+                </div>
+                <div class="card">
+                    <h3>Computer Vision</h3>
+                    <p>2-3 image processing projects</p>
+                </div>
+                <div class="card">
+                    <h3>GenAI Apps</h3>
+                    <p>2-3 modern AI applications</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Learning Method -->
+        <div class="slide">
+            <h2>How You'll Learn Each Topic</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>📄 Written Document</h3>
+                    <p>Clear explanations with examples</p>
+                </div>
+                <div class="card">
+                    <h3>🎥 Video Content</h3>
+                    <p>Hassan's recordings OR curated YouTube videos</p>
+                </div>
+                <div class="card">
+                    <h3>💻 Hands-on Exercise</h3>
+                    <p>Practice what you learned</p>
+                </div>
+                <div class="card">
+                    <h3>🚀 Real Project</h3>
+                    <p>Build something useful</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Community Support -->
+        <div class="slide">
+            <div class="emoji">🤝</div>
+            <h2>Community Support</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>💬 WhatsApp Group</h3>
+                    <p>Ask questions, share progress, help each other</p>
+                </div>
+                <div class="card">
+                    <h3>📢 WhatsApp Channel</h3>
+                    <p>Updates, resources, announcements</p>
+                </div>
+                <div class="card">
+                    <h3>🎓 Google Classroom</h3>
+                    <p>Organized materials, assignments, progress tracking</p>
+                </div>
+                <div class="card">
+                    <h3>👥 Peer Learning</h3>
+                    <p>Study groups, project reviews, networking</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Success Timeline -->
+        <div class="slide topic-slide">
+            <h2>Your Success Timeline</h2>
+            <ul>
+                <li><strong>Phase 1 - Foundation:</strong> Basic programming, statistics, math foundation</li>
+                <li><strong>Phase 2 - Machine Learning:</strong> Complete ML workflow, various algorithms</li>
+                <li><strong>Phase 3 - Deep Learning:</strong> Neural networks, image processing, sequence modeling</li>
+                <li><strong>Phase 4 - Specializations:</strong> NLP and Computer Vision expertise</li>
+                <li><strong>Phase 5 - Modern AI:</strong> GenAI, LLMs, production deployment</li>
+            </ul>
+            <div class="highlight">
+                <h3>Final Outcome:</h3>
+                <p>15-20 portfolio projects • Industry-ready skills • Professional online presence • Ready for internship applications</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Your Success is My Mission -->
+        <div class="slide career-slide">
+            <div class="emoji">🎯</div>
+            <h2>Your Success is My Mission</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>✅ Personalized Guidance</h3>
+                    <p>Get direct support from Hassan</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Industry Connections</h3>
+                    <p>Leverage my network for internship opportunities</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Career Mentorship</h3>
+                    <p>From learning to landing your first AI role</p>
+                </div>
+                <div class="card">
+                    <h3>✅ Lifetime Community</h3>
+                    <p>Join a growing network of AI professionals</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Contact -->
+        <div class="slide contact-slide">
+            <div class="emoji">🌟</div>
+            <h1>Learn AI with Hassan</h1>
+            <h2>Building the next generation of AI professionals</h2>
+            <div class="highlight">
+                <h3>Join the AI Learning Journey</h3>
+                <p>Connect with Hassan through WhatsApp Group & Channel</p>
+                <p>Get structured learning through Google Classroom</p>
+            </div>
+            <h2>"Your AI career starts here. Let's make it happen together!"</h2>
+            <p><em>© 2025 Learn AI with Hassan - Transforming Careers Through AI Education</em></p>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="prevSlide()">Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">16</span>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Auto-advance slides (uncomment if needed)
+        // setInterval(nextSlide, 10000); // Auto advance every 10 seconds
+    </script>
+</body>
+</html>
